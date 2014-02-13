@@ -622,12 +622,12 @@
 			arg.visible = false;
 		}
 
-		public function addButton(slot:int, cap:String = "", func:Function = undefined, arg:* = undefined, ttHeader:String = null, ttBody:String = null):void 
+		public function addButton(slot:int, cap:String = "", func:Function = null, arg:* = undefined, ttHeader:String = null, ttBody:String = null):void 
 		{
 			_buttonTray.addButton(slot, cap, func, arg, ttHeader, ttBody);
 		}
 		
-		public function addItemButton(slot:int, cap:String = "", quantity:int = 0, func:Function = undefined, arg:* = undefined, ttHeader:String = null, ttBody:String = null, ttCompare:String = null)
+		public function addItemButton(slot:int, cap:String = "", quantity:int = 0, func:Function = null, arg:* = undefined, ttHeader:String = null, ttBody:String = null, ttCompare:String = null)
 		{
 			_buttonTray.addItemButton(slot, cap, quantity, func, arg, ttHeader, ttBody, ttCompare);
 		}
@@ -644,7 +644,7 @@
 		}
 		
 		//Ghost button - used for menu buttons that overlay the normal buttons. 
-		public function addGhostButton(slot:int, cap:String = "", func = undefined, arg = undefined, ttHeader:String = null, ttBody:String = null):void 
+		public function addGhostButton(slot:int, cap:String = "", func = null, arg = undefined, ttHeader:String = null, ttBody:String = null):void 
 		{
 			_buttonTray.addGhostButton(slot, cap, func, arg, ttHeader, ttBody);
 		}

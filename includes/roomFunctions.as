@@ -28,6 +28,8 @@ function liftMove(destination:String):void {
 }
 
 
+import classes.GameData.CodexManager;
+
 function debugMenus():void
 {
 	clearMenu();
@@ -40,6 +42,24 @@ function debugMenus():void
 	addButton(1, "Pay up", function():void {
 		(chars["PC"] as PlayerCharacter).credits += 10000;
 		output("\n\nPay up yo!");
+	});
+	
+	addButton(2, "Codex Dump", function():void {
+		
+		var keys:Array = CodexManager.getKeys();
+		var keyStr:String = "";
+		
+		for (var i:int = 0; i < keys.length; i++)
+		{
+			keyStr += "\"" + keys[i] + "\" ";
+		}
+		
+		trace(keys.length + " keys in Codex data. Keys: [" + keyStr + "]");
+		
+		var randKey:String = keys[rand(keys.length)];
+		
+		trace("Dumping key data for key \"" + randKey + "\":");
+		trace(CodexManager.getKeyData(randKey).codexEntryData);
 	});
 }
 

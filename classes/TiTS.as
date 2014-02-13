@@ -310,12 +310,12 @@
 			userInterface.updateTooltip((evt.currentTarget as DisplayObject));
 		}
 		
-		public function addButton(slot:int, cap:String = "", func:Function = undefined, arg:* = undefined, ttHeader:String = null, ttBody:String = null):void
+		public function addButton(slot:int, cap:String = "", func:Function = null, arg:* = undefined, ttHeader:String = null, ttBody:String = null):void
 		{
 			userInterface..addButton(slot, cap, func, arg, ttHeader, ttBody);
 		}
 		
-		public function addGhostButton(slot:int, cap:String = "", func:Function = undefined, arg:* = undefined, ttHeader:String = null, ttBody:String = null):void
+		public function addGhostButton(slot:int, cap:String = "", func:Function = null, arg:* = undefined, ttHeader:String = null, ttBody:String = null):void
 		{
 			userInterface.addGhostButton(slot, cap, func, arg, ttHeader, ttBody);
 		}
@@ -325,7 +325,7 @@
 			userInterface.addDisabledButton(slot, cap, ttHeader, ttBody);
 		}
 		
-		public function addItemButton(slot:int, item:ItemSlotClass, func:Function = undefined, arg:* = undefined, ttHeader:String = null, ttBody:String = null):void
+		public function addItemButton(slot:int, item:ItemSlotClass, func:Function = null, arg:* = undefined, ttHeader:String = null, ttBody:String = null):void
 		{
 			var comparisonString:String = null;
 			var compareItem:ItemSlotClass = null;
