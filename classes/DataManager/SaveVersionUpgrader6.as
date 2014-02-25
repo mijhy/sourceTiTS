@@ -50,11 +50,6 @@ package classes.DataManager
 				return false;
 			}
 			
-			if (data.minVersion == undefined)
-			{
-				trace("wat");
-			}
-			
 			if (data.minVersion == undefined || data.minVersion != this._newVersionValue)
 			{
 				throw new VersionUpgraderError("MinVersion invalid!");

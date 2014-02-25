@@ -1,5 +1,7 @@
 ﻿package classes 
 {
+	import classes.kGAMECLASS;
+	
 	/**
 	 * ...
 	 * @author Fake-Name
@@ -31,7 +33,7 @@
 			for (var x:String in TiTS_Settings.buttonEvents)
 			{
 				retStr += TiTS_Settings.buttonEvents[x] + "\n";
-				trace("x = ", x, "Array Val = ", TiTS_Settings.buttonEvents[x]);
+				kGAMECLASS.conLog("x = " + x + "Array Val = " + TiTS_Settings.buttonEvents[x]);
 			}
 			return retStr;
 		}

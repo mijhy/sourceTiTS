@@ -7,13 +7,14 @@
 	import fl.motion.Color;
 	import flash.filters.GlowFilter;
 	import flash.geom.ColorTransform;
+	import classes.kGAMECLASS;
 	
 	public class StatBarBig extends MovieClip
 	{
 		//constructor
 		public function StatBarBig()
 		{
-			//trace("Setting up a StatBarBig");
+			//conLog("Setting up a StatBarBig");
 			this.addEventListener(Event.ENTER_FRAME, update);
 		}
 		//data
@@ -69,7 +70,7 @@
 					if(glowFrames > 0) glowFrames--;
 					glow.alpha = (glowFrames / 24);
 					if(glowFrames == 0) {
-						//trace("Clearing Glo: " + glowFrames + " on " + masks.labels.text + ".  Rough Alpha: " + glowFrames/48 + " Real Alpha: " + glow.alpha);
+						//conLog("Clearing Glo: " + glowFrames + " on " + masks.labels.text + ".  Rough Alpha: " + glowFrames/48 + " Real Alpha: " + glow.alpha);
 					}
 					values.filters = [glow];
 				}
@@ -87,7 +88,7 @@
 				glow.strength = 2;
 				glow.alpha = ((48-glowFrames) / 48);
 				values.filters = [glow];
-				if(glowFrames == 99) trace("Glowing Green: " + glowFrames);
+				if(glowFrames == 99) kGAMECLASS.conLog("Glowing Green: " + glowFrames);
 			}
 			//GLOW BLACK IF DEBUFFED
 			else if(glowFrames > 0)
@@ -102,7 +103,7 @@
 				glow.strength = 4;
 				glow.alpha = ((48-glowFrames) / 48);
 				values.filters = [glow];
-				if(glowFrames == 99) trace("Glowing ORANGE: " + glowFrames);
+				if(glowFrames == 99) kGAMECLASS.conLog("Glowing ORANGE: " + glowFrames);
 			}
 			//This part adjusts the bar scrolling and coloration
 			if (goal < current)

@@ -198,7 +198,7 @@ function updateStatBar(arg:MovieClip,value = undefined, max = undefined):void {
 		if(arg.getGoal() != value) 
 		{
 			arg.setGoal(value);
-			//trace("SETTING GOAL");
+			//conLog("SETTING GOAL");
 		}
 	}
 }
@@ -292,7 +292,7 @@ function holeChange(target:Creature,hole:int,volume:Number,display:Boolean = tru
 		}
 	}
 	if(stretched) {
-		trace("HOLE CODE #:" + hole + " STRETCHED TO " + holePointer.looseness + ".");
+		conLog("HOLE CODE #:" + hole + " STRETCHED TO " + holePointer.looseness + ".");
 		//STRETCH SUCCESSFUL - begin flavor text if outputting it!
 		if(display) {
 			//Virgins get different formatting

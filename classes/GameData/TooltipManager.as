@@ -1,5 +1,7 @@
 package classes.GameData 
 {
+	import classes.kGAMECLASS;
+	
 	/**
 	 * Data interface class, offering a singular interface to figure out where to grab tooltip data.
 	 * 
@@ -98,7 +100,7 @@ package classes.GameData
 		{			
 			if (key in TooltipManager.TOOLTIPDB)
 			{
-				trace("Tooltip Database already contains data for the key [" + key +"]");
+				kGAMECLASS.conLog("Tooltip Database already contains data for the key [" + key +"]");
 			}
 			
 			TooltipManager.TOOLTIPDB[key] = tooltip;
@@ -113,7 +115,7 @@ package classes.GameData
 		{
 			if (key in TooltipManager.FULLNAMEDB)
 			{
-				trace("Name Database already contains data for the key [" + key +"]");
+				kGAMECLASS.conLog("Name Database already contains data for the key [" + key +"]");
 			}
 			
 			TooltipManager.FULLNAMEDB[key] = name;

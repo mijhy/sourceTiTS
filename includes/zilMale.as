@@ -37,8 +37,8 @@ Combat Techniques:
 //	AI: Utilizes lust attacks unless damaged. Then has physical probability of 2 * missing HP (50% HP = 100% physical attacks). Flurry of blows or facehump if PC is stunned. 50% chance of using harden when below 75% HP.
 function zilMaleAI():void {
 	//Physical attacks
-	//trace("ZIL AI SHIT: " + ((foes[0].HPMax() - foes[0].HP())/foes[0].HPMax()) * 200);
-	//trace("ZIL HPMAX: " + foes[0].HPMax() + " ZIL HP: " + foes[0].HP());
+	//conLog("ZIL AI SHIT: " + ((foes[0].HPMax() - foes[0].HP())/foes[0].HPMax()) * 200);
+	//conLog("ZIL HPMAX: " + foes[0].HPMax() + " ZIL HP: " + foes[0].HP());
 	if(((foes[0].HPMax() - foes[0].HP())/foes[0].HPMax()) * 200 > rand(100))
 	{
 		if(pc.statusEffectv1("Round") % 4 == 0) zilHardenSingle();
@@ -133,7 +133,7 @@ function zilFlyingSpinKickSingle():void {
 	{
 		//Damage bonuses:
 		var damage:int = attacker.meleeWeapon.damage + attacker.physique()/2;
-		trace("HEEL KICK DAMAGE: " + damage);
+		conLog("HEEL KICK DAMAGE: " + damage);
 		//Randomize +/- 15%
 		var randomizer = (rand(31)+ 85)/100;
 		damage *= randomizer;

@@ -19,8 +19,8 @@
 		public function DoTheThings()
 		{
 			this.mainTextField = new TextField();
-			trace("Width = ",  this.stage.stageWidth)
-			trace("Height = ", this.stage.stageHeight)
+			conLog("Width = ",  this.stage.stageWidth)
+			conLog("Height = ", this.stage.stageHeight)
 			this.prepTextField(this.mainTextField);
 			this.processing = false;
 			this.addEventListener(Event.EXIT_FRAME, this.processData);

@@ -38,7 +38,7 @@ function combatMainMenu():void
 	}
 	else if(pc.HP() <= 0 || pc.lust() >= 100 || ((pc.physique() == 0 || pc.willpower() == 0) && pc.hasStatusEffect("Naleen Venom") && (foes[0] is Naleen || foes[0] is NaleenMale))) {
 		//YOU LOSE! GOOD DAY SIR!
-		trace("DEFEAT LOSS! - IN MAIN MENU");
+		conLog("DEFEAT LOSS! - IN MAIN MENU");
 		output("\n");
 		//clearMenuProxy();
 		//addButton(0,"Defeat",defeatRouting);
@@ -346,7 +346,7 @@ function processCombat():void
 {
 	flags["COMBAT MENU SEEN"] = undefined;
 	combatStage++;
-	trace("COMBAT STAGE:" + combatStage);
+	conLog("COMBAT STAGE:" + combatStage);
 	//Check to see if combat should be over or not.
 	//Victory check first, because PC's are OP.
 	if(allFoesDefeated()) {
@@ -357,10 +357,10 @@ function processCombat():void
 	}
 	if (pc.HP() <= 0 || pc.lust() >= 100 || ((pc.physique() <= 0 || pc.willpower() <= 0) && pc.hasStatusEffect("Naleen Venom") && foes[0] is Naleen))
 	{
-		trace("DEFEAT LOSS!");
-		trace("PHYS: " + pc.physique() + " WILLPOWAH:" + pc.willpower());
-		if(pc.hasStatusEffect("NALEEN VENOM")) trace("VENOMED");
-		if(foes[0] is Naleen) trace("FIGHTIN NALEEN");
+		conLog("DEFEAT LOSS!");
+		conLog("PHYS: " + pc.physique() + " WILLPOWAH:" + pc.willpower());
+		if(pc.hasStatusEffect("NALEEN VENOM")) conLog("VENOMED");
+		if(foes[0] is Naleen) conLog("FIGHTIN NALEEN");
 
 		//YOU LOSE! GOOD DAY SIR!
 		this.clearMenu();
@@ -374,9 +374,9 @@ function processCombat():void
 		else enemyAI(foes[combatStage-1]);
 		return;
 	}
-	if(pc.hasPerk("Attack Drone")) trace("HAS DRONE. COMBAT STAGE: " + combatStage + " FOES.LENGTH: " + foes.length);
-	if(flags["DRONE_TARGET"] != undefined) trace("DRONE_TARGET: " + flags["DRONE_TARGET"]);
-	else trace("DRONE_TARGET: UNDEFINED");
+	if(pc.hasPerk("Attack Drone")) conLog("HAS DRONE. COMBAT STAGE: " + combatStage + " FOES.LENGTH: " + foes.length);
+	if(flags["DRONE_TARGET"] != undefined) conLog("DRONE_TARGET: " + flags["DRONE_TARGET"]);
+	else conLog("DRONE_TARGET: UNDEFINED");
 	//DRONE TIME - only attacks targets if they've been marked!
 	if(combatStage == foes.length+1 && pc.hasPerk("Attack Drone") && flags["DRONE_TARGET"] != undefined)
 	{
@@ -434,7 +434,7 @@ function combatMiss(attacker:Creature, target:Creature):Boolean
 	}
 	//Evasion chances
 	if(target.evasion() >= rand(100) + 1) {
-		trace("EVASION WORKED!: " + target.evasion());
+		conLog("EVASION WORKED!: " + target.evasion());
 		return true;
 	}
 	//10% miss chance for lucky breaks!
@@ -616,7 +616,7 @@ function attack(attacker:Creature, target:Creature, noProcess:Boolean = false, s
 //Special 2: Flurry attack with no new screen display.
 function rangedAttack(attacker:Creature, target:Creature, noProcess:Boolean = false, special:int = 0):void 
 {
-	trace("Ranged shot...");
+	conLog("Ranged shot...");
 	//Set drone target
 	if(attacker == pc && pc.hasPerk("Attack Drone"))
 	{
@@ -826,9 +826,9 @@ function shieldDamage(victim:Creature,damage:Number = 0, damageType = GLOBAL.KIN
 	damage *= victim.getShieldResistance(damageType);
 
 	//Debug trace statements to help me doublecheck that all this is working right
-	//trace("INITIAL DAMAGE: " + initialDamage);
-	//trace("SHIELD DEFENSE VALUE: " + victim.shieldDefense());	
-	//trace("SHIELD DAMAGE MULTIPLIER: " + victim.getShieldResistance(damageType));
+	//conLog("INITIAL DAMAGE: " + initialDamage);
+	//conLog("SHIELD DEFENSE VALUE: " + victim.shieldDefense());	
+	//conLog("SHIELD DAMAGE MULTIPLIER: " + victim.getShieldResistance(damageType));
 	
 	damage = Math.round(damage);
 	
@@ -842,8 +842,8 @@ function shieldDamage(victim:Creature,damage:Number = 0, damageType = GLOBAL.KIN
 		if(leftoverDamage < 0) leftoverDamage = 0;
 		
 		//Second half of checking shield stuff.
-		//trace("Damage soaked up by shields: " + soakedDamage);
-		//trace("New leftover damage: " + leftoverDamage);
+		//conLog("Damage soaked up by shields: " + soakedDamage);
+		//conLog("New leftover damage: " + leftoverDamage);
 	}
 	//If we're this far, damage can't be less than one. You did get hit, after all.
 	if(damage < 1) damage = 1;
@@ -973,7 +973,7 @@ function showMonsterArousalFlavor(targetFoe):void
 
 function enemyAI(aggressor:Creature):void 
 {	
-	trace("AI CALL");
+	conLog("AI CALL");
 	//Paralyze stops turns! AHHHH!
 	if(aggressor.hasStatusEffect("Paralyzed")) {
 		if(aggressor.plural) output("<b>" + aggressor.capitalA + aggressor.short + " are still paralyzed.</b>");
@@ -1087,9 +1087,9 @@ function defeatRouting():void
 
 function genericLoss():void {
 	pc.removeStatusEffect("Round");
-	trace("GENERIC LOSS");
+	conLog("GENERIC LOSS");
 	pc.clearCombatStatuses();
-	trace("LOSS DONE");
+	conLog("LOSS DONE");
 	this.clearMenu();
 	this.addButton(0,"Next",mainGameMenu);
 }
@@ -1136,11 +1136,11 @@ function getCombatPrizes(newScreen:Boolean = false):void
 			if(foes[x].inventory[y].quantity != 0) {
 				foundLootItems[foundLootItems.length] = foes[x].inventory[y]; // NOTE: Might have to come back through here and use copies; depends how shit plays out with combat + persistent characters.
 				if(foes[x].inventory[y].useFunction != undefined) {
-					trace("NOT UNDEFINED! X: " + x + " Y: " + y);
-					if(foundLootItems[foundLootItems.length-1].useFunction == undefined) trace("SAME LOOT LIST: UNDEFINED");
-					else trace("SAME LOOT LIST: CONDITION GREEN");
+					conLog("NOT UNDEFINED! X: " + x + " Y: " + y);
+					if(foundLootItems[foundLootItems.length-1].useFunction == undefined) conLog("SAME LOOT LIST: UNDEFINED");
+					else conLog("SAME LOOT LIST: CONDITION GREEN");
 				}
-				else trace("UNDEFINED FUNC: " + foes[x].inventory[y].longName);
+				else conLog("UNDEFINED FUNC: " + foes[x].inventory[y].longName);
 			}
 		}
 	}
@@ -1304,7 +1304,7 @@ function runAway():void {
 		else if(difficulty == 3) difficulty = 20;
 		else if(difficulty == 4) difficulty = 10;
 		else difficulty = 5;
-		trace("Successful escape chance: " + difficulty + " %")
+		conLog("Successful escape chance: " + difficulty + " %")
 		//Success!
 		if(rand(100) + 1 <= difficulty) {
 			if(pc.canFly()) output("Your feet leave the ground as you fly away, leaving the fight behind.")
@@ -1446,7 +1446,7 @@ function tease(target:Creature, part:String = "chest"):void {
 			totalFactor *= likeAdjustments[x];
 		}
 	}
-	trace("TOTAL MULTIPLICATION FACTOR: " + totalFactor);
+	conLog("TOTAL MULTIPLICATION FACTOR: " + totalFactor);
 
 	//Celise ignores ALL THIS SHIT!
 	if(!(target is Celise)) 

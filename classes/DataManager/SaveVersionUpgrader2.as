@@ -2,6 +2,8 @@
 {
 	import classes.DataManager.Errors.VersionUpgraderError;
 	import classes.SexualPreferences;
+	import classes.kGAMECLASS;
+	
 	/**
 	 * ...
 	 * @author Gedan
@@ -22,11 +24,11 @@
 			// We have go iterate over every character...
 			for (var k in data.characters)
 			{
-				trace("Upgrading " + k + "...");
+				kGAMECLASS.conLog("Upgrading " + k + "...");
 				
 				this.upgradeChar(data.characters[k]);
 				
-				trace("Upgraded!");
+				kGAMECLASS.conLog("Upgraded!");
 			}
 			
 			data.minVersion = this._newVersionValue;

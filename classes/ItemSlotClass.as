@@ -5,6 +5,7 @@
 	import flash.utils.describeType;
 	import flash.utils.getQualifiedClassName;
 	import flash.utils.getDefinitionByName;
+	import classes.kGAMECLASS;
 	
 	public class ItemSlotClass extends ItemSaveable
 	{
@@ -280,11 +281,11 @@
 				{
 					// Print the new items resistance value as a %
 					resistancesDiffString += GLOBAL.DamageTypeStrings[resistIndex] + "\t ";
-					trace("Resist cals for " + GLOBAL.DamageTypeStrings[resistIndex] + ":");
+					kGAMECLASS.conLog("Resist cals for " + GLOBAL.DamageTypeStrings[resistIndex] + ":");
 					
 					resistancesDiffString += convertNumToResistancePercentage(newItem.bonusResistances[resistIndex]) + "%\t ";
-					trace("New Array Val [" + newItem.bonusResistances[resistIndex] +"] New As Resistance [" + convertNumToResistancePercentage(newItem.bonusResistances[resistIndex]) + "]");
-					trace("Old Array Val [" + oldItem.bonusResistances[resistIndex] +"] Old As Resistance [" + convertNumToResistancePercentage(oldItem.bonusResistances[resistIndex]) + "]");
+					kGAMECLASS.conLog("New Array Val [" + newItem.bonusResistances[resistIndex] +"] New As Resistance [" + convertNumToResistancePercentage(newItem.bonusResistances[resistIndex]) + "]");
+					kGAMECLASS.conLog("Old Array Val [" + oldItem.bonusResistances[resistIndex] +"] Old As Resistance [" + convertNumToResistancePercentage(oldItem.bonusResistances[resistIndex]) + "]");
 					
 					// Display the comparison value
 					var newRes:Number = newItem.bonusResistances[resistIndex];

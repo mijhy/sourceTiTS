@@ -7,6 +7,7 @@
 	import classes.Mapper;
 	import flash.geom.ColorTransform;
 	import classes.UIComponents.UIStyleSettings;
+	import classes.kGAMECLASS;
 	
 	/**
 	 * ...
@@ -169,7 +170,7 @@
 			this.BuildContainer();
 			this.BuildChildren();
 			
-			trace("MiniMap constructed!");
+			kGAMECLASS.conLog("MiniMap constructed!");
 		}
 		
 		/**
@@ -346,10 +347,10 @@
 		public function debug():void
 		{
 			this.visible = true;
-			trace("Located at (x,y):(" + this.x + "," + this.y + ")");
-			trace("Dimensions (x,y):(" + this.width + "," + this.height + ")");
-			trace("Target Dimensions (x,y):(" + this.targetWidth + "," + this.targetHeight + ")");
-			trace("Parent Dimensions (x,y):(" + this.parent.width + "," + this.parent.height + ")");
+			kGAMECLASS.conLog("Located at (x,y):(" + this.x + "," + this.y + ")");
+			kGAMECLASS.conLog("Dimensions (x,y):(" + this.width + "," + this.height + ")");
+			kGAMECLASS.conLog("Target Dimensions (x,y):(" + this.targetWidth + "," + this.targetHeight + ")");
+			kGAMECLASS.conLog("Parent Dimensions (x,y):(" + this.parent.width + "," + this.parent.height + ")");
 		}
 		
 		private function roomConnection(sourceRoom:int, targetRoom:int, posMask:int, negMask:int):int

@@ -1,6 +1,8 @@
 ﻿package classes
 {
-
+	import flash.external.ExternalInterface;
+	import flash.utils.getQualifiedClassName;
+	
 	import classes.TiTS_Settings;
 	import classes.UIComponents.MainButton;
 	import flash.display.DisplayObject;
@@ -163,7 +165,7 @@
 			minutes = 0;
 			days = 0;
 
-			trace("TiTS Constructor")
+			conLog("TiTS Constructor")
 
 			version = "0.02.6";
 
@@ -238,7 +240,9 @@
 			this.chars["PC"] = new PlayerCharacter();
 
 
-			trace("Setting up the PC")
+			conLog("Setting up the PC")
+			
+			stage.addEventListener(Event.ENTER_FRAME, doRedraw);
 			
 			this.addFrameScript( 0, mainMenu );
 			//mainMenu();
@@ -291,11 +295,11 @@
 			
 			if (evt.currentTarget is MainButton)
 			{
-				trace("Button " + (evt.currentTarget as MainButton).buttonName + " clicked");
+				conLog("Button " + (evt.currentTarget as MainButton).buttonName + " clicked");
 			}
 			else
 			{
-				trace("Button " + evt.currentTarget.caption.text + " clicked.");
+				conLog("Button " + evt.currentTarget.caption.text + " clicked.");
 			}
 			
 			if (evt.currentTarget.arg == undefined)
@@ -307,9 +311,20 @@
 				evt.currentTarget.func(evt.currentTarget.arg);
 			}
 			
+			conLog("Button functor activation complete");
+			
 			updatePCStats();
 			
 			userInterface.updateTooltip((evt.currentTarget as DisplayObject));
+			
+			needsUpdate = true;
+		}
+		
+		private var needsUpdate:Boolean = false;
+		
+		public function doRedraw(e:Event):void
+		{
+			if (needsUpdate) stage.focus = null;
 		}
 		
 		public function addButton(slot:int, cap:String = "", func:Function = undefined, arg:* = undefined, ttHeader:String = null, ttBody:String = null):void
@@ -384,7 +399,7 @@
 			
 			var keyTemp;
 			if(stage.focus == null) { 
-				trace("OUT OF FOCUS SCROLL");
+				conLog("OUT OF FOCUS SCROLL");
 				keyTemp = this.userInterface.mainTextField.bottomScrollV - this.userInterface.mainTextField.scrollV + 1;
 				this.userInterface.mainTextField.scrollV -= keyTemp;
 			}
@@ -395,7 +410,7 @@
 		{
 			var keyTemp;
 			if(stage.focus == null) { 
-				trace("OUT OF FOCUS SCROLL");
+				conLog("OUT OF FOCUS SCROLL");
 				keyTemp = this.userInterface.mainTextField.bottomScrollV - this.userInterface.mainTextField.scrollV + 1;
 				this.userInterface.mainTextField.scrollV += keyTemp;
 			}
@@ -515,13 +530,13 @@
 		//Used to set position of bar while being dragged!
 		public function scrollerUpdater(evt:Event):void {
 			var progress:Number = (this.userInterface.scrollBar.y-this.userInterface.scrollBG.y) / (this.userInterface.scrollBG.height - this.userInterface.scrollBar.height - 1);
-				//trace("FRAME UPDATE: " + progress);
-				//trace("SCROLLBARY: " + scrollBar.y + " SCROLLBGY: " + scrollBG.y);
-				//trace("SCROLLBAR: " + scrollBar.height + " SCROLLBG: " + scrollBG.height);
+				//conLog("FRAME UPDATE: " + progress);
+				//conLog("SCROLLBARY: " + scrollBar.y + " SCROLLBGY: " + scrollBG.y);
+				//conLog("SCROLLBAR: " + scrollBar.height + " SCROLLBG: " + scrollBG.height);
 			var min = this.userInterface.mainTextField.scrollV;
 			var max = this.userInterface.mainTextField.maxScrollV;
 			this.userInterface.mainTextField.scrollV = progress * this.userInterface.mainTextField.maxScrollV;
-				//trace("SCROLL V: " + this.userInterface.mainTextField.scrollV + " SHOULD BE: " + progress * this.userInterface.mainTextField.maxScrollV);
+				//conLog("SCROLL V: " + this.userInterface.mainTextField.scrollV + " SHOULD BE: " + progress * this.userInterface.mainTextField.maxScrollV);
 			scrollChecker();
 		}
 
@@ -563,7 +578,7 @@
 			this.userInterface.hideNormalDisplayShit();
 			
 			//Show menu shits
-			trace("Making everything visible:")
+			conLog("Making everything visible:")
 			this.userInterface.creditText.visible = true;
 			this.userInterface.warningText.visible = true;
 			this.userInterface.titleDisplay.visible = true;
@@ -721,6 +736,25 @@
 		public function get reaha():*
 		{
 			return chars["REAHA"];
+		}
+		
+		// Some test shit to see if I can get some actual details outta chrome
+		public function conLog(msg:String /*, caller:Object = null*/):void
+		{
+			var str:String = "";
+			var caller:Boolean = false;
+			if (caller)
+			{
+				str += getQualifiedClassName(caller);
+				str += " :: ";
+			}
+			str += msg;
+			trace(str);
+			if (ExternalInterface.available)
+			{
+				ExternalInterface.call("console.log", str);
+			}
+			
 		}
 	}
 }

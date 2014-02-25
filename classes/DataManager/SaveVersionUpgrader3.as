@@ -2,6 +2,8 @@
 {
 	import classes.DataManager.Errors.VersionUpgraderError;
 	import flash.net.SharedObject;
+	import classes.kGAMECLASS;
+	
 	/**
 	 * ...
 	 * @author Fenoxo
@@ -23,11 +25,11 @@
 			// We have go iterate over every character...
 			for (var k in data.characters)
 			{
-				trace("Upgrading to V4 " + k + "...");
+				kGAMECLASS.conLog("Upgrading to V4 " + k + "...");
 				
 				this.upgradeChar(data.characters[k]);
 				
-				trace("Upgraded!");
+				kGAMECLASS.conLog("Upgraded!");
 			}
 			data.minVersion = 4;
 			data.version = this._newVersionValue;
@@ -56,7 +58,7 @@
 			
 			if (data.minVersion == undefined)
 			{
-				trace("wat");
+				kGAMECLASS.conLog("wat");
 			}
 			
 			if (data.minVersion == undefined || data.minVersion != this._newVersionValue)

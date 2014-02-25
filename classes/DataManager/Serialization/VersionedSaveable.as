@@ -5,6 +5,7 @@
 	import flash.utils.getQualifiedClassName;
 	import flash.utils.getDefinitionByName;
 	import flash.utils.describeType;
+	import classes.kGAMECLASS;
 	
 	/**
 	 * ...
@@ -82,7 +83,7 @@
 							else
 							{
 								dataObject[prop.@name] = this[prop.@name];
-								trace("Potential serialization issue with property: " + prop.@name);
+								kGAMECLASS.conLog("Potential serialization issue with property: " + prop.@name);
 							}
 						}
 						else
@@ -97,7 +98,7 @@
 					else
 					{
 						dataObject[prop.@name] = this[prop.@name];
-						trace("Potential serialization issue with property: " + prop.@name);
+						kGAMECLASS.conLog("Potential serialization issue with property: " + prop.@name);
 					}
 				}
 			}

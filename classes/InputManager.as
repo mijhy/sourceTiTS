@@ -65,7 +65,7 @@
 		
 		public function ignoreInputKeys(flag:Boolean = false):void
 		{
-			trace("Setting key event listener event ignore flag to", flag)
+			kGAMECLASS.conLog("Setting key event listener event ignore flag to" + flag)
 			this._ignoreKeyPresses = flag;
 		}
 
@@ -174,7 +174,7 @@
 				}
 			}
 			
-			if (_debug) trace("Failed to bind control method [" + funcName + "] to keyCode [" + keyCode + "]");
+			if (_debug) kGAMECLASS.conLog("Failed to bind control method [" + funcName + "] to keyCode [" + keyCode + "]");
 		}
 		
 		/**
@@ -204,7 +204,7 @@
 		 */
 		public function KeyHandler(e:KeyboardEvent):void
 		{
-			if (_debug) trace("Got key input " + e.keyCode);
+			if (_debug) kGAMECLASS.conLog("Got key input " + e.keyCode);
 			
 			
 			// If we're not in binding mode, listen for key inputs to act on
@@ -224,7 +224,7 @@
 		{
 			if (_keysToControlMethods[keyCode] != null)
 			{
-				if (_debug) trace("Attempting to exec func [" + _controlMethods[_keysToControlMethods[keyCode]].Name + "]");
+				if (_debug) kGAMECLASS.conLog("Attempting to exec func [" + _controlMethods[_keysToControlMethods[keyCode]].Name + "]");
 				
 				_controlMethods[_keysToControlMethods[keyCode]].ExecFunc();
 			}
@@ -298,7 +298,7 @@
 			
 			for (var key:String in _controlMethods)
 			{
-				if (_debug) trace(key);
+				if (_debug) kGAMECLASS.conLog(key);
 				funcs.push(_controlMethods[key]);
 			}
 			funcs.sortOn( ["Index"], [Array.NUMERIC] );
@@ -371,7 +371,7 @@
 			
 			for (var key:String in _controlMethods)
 			{
-				if (_debug) trace(key);
+				if (_debug) kGAMECLASS.conLog(key);
 				var ctrlObj:* = new Object();
 				ctrlObj.PrimaryKey = _controlMethods[key].PrimaryKey;
 				ctrlObj.SecondaryKey = _controlMethods[key].SecondaryKey;

@@ -11,6 +11,7 @@
 	import flash.utils.describeType;
 	import flash.utils.getQualifiedClassName;
 	import flash.utils.getDefinitionByName;
+	import classes.kGAMECLASS;
 
 	import flash.utils.ByteArray;
 
@@ -424,7 +425,7 @@
 		}
 
 		public function getDescription(arg: String, arg2: * ): String {
-			//trace("Legacy! Please access object members directly!")
+			//kGAMECLASS.conLog("Legacy! Please access object members directly!")
 			var firstLetter: String = arg.substr(0, 1);
 			firstLetter = firstLetter.toLowerCase();
 			var restOfString: String = arg.substr(1, arg.length);
@@ -740,7 +741,7 @@
 					break;
 			}
 			if (arg.charCodeAt(0) > 64 && arg.charCodeAt(0) < 90) buffer = upperCase(buffer);
-			// trace("BUFFER OUT: " + buffer);
+			// kGAMECLASS.conLog("BUFFER OUT: " + buffer);
 			return buffer;
 		}
 		public function Num2Text(number: int): String {
@@ -1104,7 +1105,7 @@
 			else if (stat == "willpower") statCurrent = willpower();
 			else if (stat == "libido") statCurrent = libido();
 			else {
-				trace("ERROR: slowStatGain called with stat argument of " + stat + ". This isn't a real stat!");
+				kGAMECLASS.conLog("ERROR: slowStatGain called with stat argument of " + stat + ". This isn't a real stat!");
 				return 0;
 			}
 			while (arg > 0) {
@@ -1129,7 +1130,7 @@
 			else if (stat == "willpower") return willpower(change);
 			else if (stat == "libido") return libido(change);
 			else {
-				trace("ERROR: slowStatGain got to the end with a stat that should've called the earlier error. Looks like the function has been changed, added to, or bugged. Make sure top stat list matches bottom!");
+				kGAMECLASS.conLog("ERROR: slowStatGain got to the end with a stat that should've called the earlier error. Looks like the function has been changed, added to, or bugged. Make sure top stat list matches bottom!");
 				return 0;
 			}
 		}
@@ -1935,7 +1936,7 @@
 				arrayed = true;
 				keySlot = array.length - 1;
 			}
-			trace("Storage logged in slot " + keySlot + ": " + array[keySlot].storageName + " for " + short);
+			kGAMECLASS.conLog("Storage logged in slot " + keySlot + ": " + array[keySlot].storageName + " for " + short);
 		}
 		//Create a perk
 		public function createPerk(keyName: String, value1: Number, value2: Number, value3: Number, value4: Number, desc: String = ""): void {
@@ -1963,7 +1964,7 @@
 			if ((arg == 2 || (pregnancyIncubations[hole] == 0)) && totalFertility() + bonus > Math.floor(Math.random() * beat)) {
 				pregnancyTypes[hole] = type;
 				pregnancyIncubations[hole] = incubation;
-				trace("PC Knocked up with pregnancy type: " + type + " for " + incubation + " incubation in hole#: " + hole + ".");
+				kGAMECLASS.conLog("PC Knocked up with pregnancy type: " + type + " for " + incubation + " incubation in hole#: " + hole + ".");
 			}
 			//Chance for eggs fertilization - ovi elixir and imps excluded!
 			if (type != 1 && type != 5 && type != 10) {
@@ -2027,7 +2028,7 @@
 		//Create a status
 		public function createStatusEffect(statusName: String, value1: Number = 0, value2: Number = 0, value3: Number = 0, value4: Number = 0, hidden: Boolean = true, iconName: String = "", tooltip: String = "", combatOnly: Boolean = false, minutesLeft: Number = 0): void {
 			if (this.hasStatusEffect(statusName)) {
-				trace("Status '" + statusName + "' already present on " + this.short);
+				kGAMECLASS.conLog("Status '" + statusName + "' already present on " + this.short);
 				return;
 			}
 
@@ -2044,7 +2045,7 @@
 			newStatusEffect.minutesLeft = minutesLeft;
 			alphabetize(statusEffects, newStatusEffect);
 
-			trace("New status applied to " + short + ": " + statusName);
+			kGAMECLASS.conLog("New status applied to " + short + ": " + statusName);
 		}
 		//Create a keyItem
 		public function createKeyItem(keyName: String, value1: Number, value2: Number, value3: Number, value4: Number, description: String = ""): void {
@@ -2056,7 +2057,7 @@
 			newKeyItem.value4 = value4;
 			newKeyItem.tooltip = description;
 			alphabetize(keyItems, newKeyItem);
-			trace("New key item applied to " + short + ": " + keyName);
+			kGAMECLASS.conLog("New key item applied to " + short + ": " + keyName);
 		}
 		//REMOVING THINGS!
 		//status
@@ -2101,18 +2102,18 @@
 		}
 		//General function used by all
 		public function removeStorageSlot(array, storageName): void {
-			trace("Removing storage slot...");
+			kGAMECLASS.conLog("Removing storage slot...");
 			var counter: Number = array.length;
 			//Various Errors preventing action
 			if (array.length <= 0) {
-				trace("Attempted to remove storage slot " + storageName + " on " + short + " but chosen array has no members.");
+				kGAMECLASS.conLog("Attempted to remove storage slot " + storageName + " on " + short + " but chosen array has no members.");
 				return;
 			}
 			while (counter > 0) {
 				counter--;
 				if (array[counter].storageName == storageName) {
 					array.splice(counter, 1);
-					trace("Removed \"" + storageName + "\" from a storage array on " + short + ".");
+					kGAMECLASS.conLog("Removed \"" + storageName + "\" from a storage array on " + short + ".");
 					counter = 0;
 				}
 			}
@@ -2159,7 +2160,7 @@
 				//Find it, change it, quit out
 				if (array[counter].storageName == storageName) {
 					if (storageValueNum < 1 || storageValueNum > 5 || (storageValueNum == 5 && !newValue is String) || (storageValueNum > 0 && storageValueNum < 5 && !newValue is Number)) {
-						trace("ERROR: Change storage value with invalid value for given slot or invalid slot.");
+						kGAMECLASS.conLog("ERROR: Change storage value with invalid value for given slot or invalid slot.");
 						return;
 					}
 					if (storageValueNum == 1) array[counter].value1 = newValue;
@@ -2170,7 +2171,7 @@
 					return;
 				}
 			}
-			trace("ERROR: Looking for status '" + storageName + "' to change value " + storageValueNum + ", and " + short + " does not have the status affect.");
+			kGAMECLASS.conLog("ERROR: Looking for status '" + storageName + "' to change value " + storageValueNum + ", and " + short + " does not have the status affect.");
 			return;
 		}
 		public function addStatusValue(statusName: String, statusValueNum: Number = 1, newNum: Number = 0) {
@@ -2187,14 +2188,14 @@
 			//Various Errors preventing action
 			if (array.length <= 0) {
 				return;
-				//trace("ERROR: Looking for storage '" + storageName + "' to add value " + storageValueNum + ", and " + short + " has no storage in array.");
+				//kGAMECLASS.conLog("ERROR: Looking for storage '" + storageName + "' to add value " + storageValueNum + ", and " + short + " has no storage in array.");
 			}
 			while (counter > 0) {
 				counter--;
 				//Find it, change it, quit out
 				if (array[counter].storageName == storageName) {
 					if (storageValueNum < 1 || storageValueNum > 4) {
-						trace("ERROR: AddStorageValue called with invalid status value number.");
+						kGAMECLASS.conLog("ERROR: AddStorageValue called with invalid status value number.");
 						return;
 					}
 					if (storageValueNum == 1) array[counter].value1 += newNum;
@@ -2204,19 +2205,19 @@
 					return;
 				}
 			}
-			trace("ERROR: Looking for status '" + storageName + "' to add value " + storageValueNum + ", and " + short + " does not have the status affect.");
+			kGAMECLASS.conLog("ERROR: Looking for status '" + storageName + "' to add value " + storageValueNum + ", and " + short + " does not have the status affect.");
 			return;
 		}
 
 		private function storageValue(array, storageName, targetValue): Number {
-			trace("Finding storage value.");
+			kGAMECLASS.conLog("Finding storage value.");
 			if (array.length == 0) return 0;
 			if (!hasStorageName(array, storageName)) return 0;
 			for (var counter: int = 0; counter < array.length; counter++) {
-				trace("Loop through once");
+				kGAMECLASS.conLog("Loop through once");
 				if (array[counter].storageName == storageName) break;
 			}
-			trace("Finished Loop");
+			kGAMECLASS.conLog("Finished Loop");
 			if (targetValue == 1) return array[counter].value1;
 			else if (targetValue == 2) return array[counter].value2;
 			else if (targetValue == 3) return array[counter].value3;
@@ -2834,7 +2835,7 @@
 		}
 		//Find the biggest cock that fits inside a given value
 		public function cockThatFits(fits: Number = 0, type: String = "area"): Number {
-			trace("Fits value: " + fits);
+			kGAMECLASS.conLog("Fits value: " + fits);
 			if (cocks.length <= 0) return -1;
 			var counter: Number = cocks.length;
 			//Current largest fitter
@@ -2893,7 +2894,7 @@
 								index2 = counter;
 							}
 						}
-						if (index >= 0 && index == index2) trace("FUCK ERROR COCKTHATFITS2 SHIT IS BROKED!");
+						if (index >= 0 && index == index2) kGAMECLASS.conLog("FUCK ERROR COCKTHATFITS2 SHIT IS BROKED!");
 					}
 					//Store the index of fitting dick
 					else index = counter;
@@ -3136,7 +3137,7 @@
 			return false;
 		}
 		public function hasDickNipples(): Boolean {
-			trace("THIS FUNCTION IS THE REASON THEY INVENTED AIDS. WHRYYYYYYYYYY!!!!!!!!!!!!!1111one!");
+			kGAMECLASS.conLog("THIS FUNCTION IS THE REASON THEY INVENTED AIDS. WHRYYYYYYYYYY!!!!!!!!!!!!!1111one!");
 			return hasNippleCocks();
 		}
 		public function hasNippleCocks(): Boolean {
@@ -3232,7 +3233,7 @@
 							counter--;
 							if(breastRows[index].lactationMultiplier < breastRows[counter].lactationMultiplier) index = counter;
 						}
-						trace(biggestLactation());
+						kGAMECLASS.conLog(biggestLactation());
 						breastRows[index].lactationMultiplier += todo;
 						if(breastRows[index].lactationMultiplier < 0) breastRows[index].lactationMultiplier = 0;
 						todo = 0;
@@ -3381,7 +3382,7 @@
 			if (quantity > currentCum()) quantity = currentCum();
 			//Round dat shit.
 			quantity = Math.round(quantity / 10) * 10;
-			trace("Cum produced: " + quantity);
+			kGAMECLASS.conLog("Cum produced: " + quantity);
 			if (quantity < 2) quantity = 2;
 			return quantity;
 		}
@@ -3431,7 +3432,7 @@
 				index++;
 				if (cocks[index].cType == type) return index;
 			}
-			trace("creature.findFirstOfcType ERROR - searched for cType: " + type + " and could not find it.");
+			kGAMECLASS.conLog("creature.findFirstOfcType ERROR - searched for cType: " + type + " and could not find it.");
 			return 0;
 		}
 		//How many cocks?
@@ -3614,13 +3615,13 @@
 			var weighting: Number = femininity;
 			//Tits count up to their rating for femininity
 			if (biggestTitSize() >= 1) {
-				trace("boobs confirmed");
+				kGAMECLASS.conLog("boobs confirmed");
 				if (biggestTitSize() * 3 > 50) weighting += 50;
 				else weighting += biggestTitSize() * 3;
 			}
 			//Flat chest + 20 masculine
 			else if (biggestTitSize() == 0) {
-				trace("no boobs confirmed");
+				kGAMECLASS.conLog("no boobs confirmed");
 				weighting -= 20;
 			}
 			//Hips give small boost
@@ -3632,7 +3633,7 @@
 			if (tone < 30) weighting += 10;
 			if (lipRating() > 1) weighting += lipRating() * 3;
 			if (hasBeard()) weighting -= 100;
-			trace("Femininity Rating = " + weighting);
+			kGAMECLASS.conLog("Femininity Rating = " + weighting);
 			//Neuters first!
 			if (neuter != "") {
 				if (weighting >= 45 && weighting <= 55) return neuter;
@@ -3684,16 +3685,16 @@
 				return;
 			}
 			if (array.length == 0) {
-				//trace("ERROR: removeCock called but cocks do not exist.");
+				//kGAMECLASS.conLog("ERROR: removeCock called but cocks do not exist.");
 				return;
 			}
 			if (arraySpot > cocks.length - 1) {
-				//trace("ERROR: removeCock failed - array location is beyond the bounds of the array.");
+				//kGAMECLASS.conLog("ERROR: removeCock failed - array location is beyond the bounds of the array.");
 			} else {
 				array.splice(arraySpot, totalRemoved);
-				if (array == cocks) trace("Attempted to remove " + totalRemoved + " spots from cocks.");
-				else if (array == vaginas) trace("Attempted to remove " + totalRemoved + " spots from vaginas.");
-				else if (array == breastRows) trace("Attempted to remove " + totalRemoved + " spots from breastRows.");
+				if (array == cocks) kGAMECLASS.conLog("Attempted to remove " + totalRemoved + " spots from cocks.");
+				else if (array == vaginas) kGAMECLASS.conLog("Attempted to remove " + totalRemoved + " spots from vaginas.");
+				else if (array == breastRows) kGAMECLASS.conLog("Attempted to remove " + totalRemoved + " spots from breastRows.");
 			}
 		}
 		//Remove cocks
@@ -5322,11 +5323,11 @@
 			return true;
 		}
 		private function clearList(): void {
-			trace("THIS FUNCTION IS STUPID AS ALL FUCK. WHY ARE YOU DOING THIS!!!!!!!!!!!!!1111one!");
+			kGAMECLASS.conLog("THIS FUNCTION IS STUPID AS ALL FUCK. WHY ARE YOU DOING THIS!!!!!!!!!!!!!1111one!");
 			list = new Array();
 		}
 		private function addToList(arg): void {
-			trace("THIS FUNCTION IS STUPID AS ALL FUCK. WHY ARE YOU DOING THIS!!!!!!!!!!!!!1111one!");
+			kGAMECLASS.conLog("THIS FUNCTION IS STUPID AS ALL FUCK. WHY ARE YOU DOING THIS!!!!!!!!!!!!!1111one!");
 			list[list.length] = arg;
 		}
 		private function formatList(): String {

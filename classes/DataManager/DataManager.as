@@ -361,8 +361,8 @@
 						}
 						catch (error:VersionUpgraderError)
 						{
-							trace("Error thrown in data loader!", error);
-							trace("Traceback = \n", error.getStackTrace());
+							kGAMECLASS.conLog("Error thrown in data loader!" + error);
+							kGAMECLASS.conLog("Traceback = \n" + error.getStackTrace());
 							dataErrors = true;
 						}
 					}
@@ -410,7 +410,7 @@
 		 */
 		private function loadBaseData(obj:Object):Object
 		{
-			trace("loadBaseData");
+			kGAMECLASS.conLog("loadBaseData");
 			// Base/Primary information
 			var curGameObj:Object = new Object();
 			
@@ -449,7 +449,7 @@
 				catch (e:ReferenceError)
 				{
 					// If the classDefintion doesn't exist, we'll get a ReferenceError exception
-					trace(e.message)
+					kGAMECLASS.conLog(e.message)
 				}
 			}
 			kGAMECLASS.initializeNPCs(true); // Creates any "missing" NPCs from the save

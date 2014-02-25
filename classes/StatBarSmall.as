@@ -7,6 +7,7 @@
 	import fl.motion.Color;
 	import flash.filters.GlowFilter;
 	import flash.geom.ColorTransform;
+	import classes.kGAMECLASS;
 	
 	public class StatBarSmall extends MovieClip
 	{
@@ -95,7 +96,7 @@
 				glow.strength = 3;
 				glow.alpha = ((100-glowFrames) / 100);
 				values.filters = [glow];
-				if(glowFrames == 99) trace("Glowing Green: " + glowFrames);
+				if(glowFrames == 99) kGAMECLASS.conLog("Glowing Green: " + glowFrames);
 			}
 			//GLOW BLACK IF DEBUFFED
 			else if(glowFrames > 0 && (current > goal && !highBad) || (goal < current && highBad))
@@ -110,7 +111,7 @@
 				glow.strength = 4;
 				glow.alpha = ((100-glowFrames) / 100);
 				values.filters = [glow];
-				if(glowFrames == 99) trace("Glowing ORANGE: " + glowFrames);
+				if(glowFrames == 99) kGAMECLASS.conLog("Glowing ORANGE: " + glowFrames);
 			}
 			else 
 				glowFrames--;

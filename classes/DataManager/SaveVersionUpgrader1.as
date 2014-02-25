@@ -2,6 +2,8 @@
 {
 	import classes.DataManager.Errors.VersionUpgraderError;
 	import flash.net.SharedObject;
+	import classes.kGAMECLASS;
+	
 	/**
 	 * ...
 	 * @author Gedan
@@ -85,7 +87,7 @@
 			}
 			else
 			{
-				trace("Upgrading save version 1 to version 2.");
+				kGAMECLASS.conLog("Upgrading save version 1 to version 2.");
 			}
 			
 			if (!runUpdater(data))
@@ -113,7 +115,7 @@
 			
 			if (data.minVersion == undefined)
 			{
-				trace("wat");
+				kGAMECLASS.conLog("wat");
 			}
 			
 			if (data.minVersion == undefined || data.minVersion != this._newVersionValue)

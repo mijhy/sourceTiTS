@@ -47,7 +47,7 @@ function syriGamesStart():void {
 	if(flags["TIMES_WON_AGAINST_SYRI"] + flags["TIMES_LOST_TO_SYRI"] >= 3) addButton(3,"BetYourself",betYourselfAgainstSyri);
 	
 	else addDisabledButton(3,"BetYourself");
-	trace("SHIT ADDED UP: " + flags["TIMES_WON_AGAINST_SYRI"] + flags["TIMES_LOST_TO_SYRI"]);
+	conLog("SHIT ADDED UP: " + flags["TIMES_WON_AGAINST_SYRI"] + flags["TIMES_LOST_TO_SYRI"]);
 	addButton(14,"Back",notTodayDogslut);
 }
 

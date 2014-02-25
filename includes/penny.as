@@ -380,8 +380,8 @@ function seriouslyFightTheZil():void {
 //	AI: Utilizes lust attacks unless damaged. Then has physical probability of 2 * missing HP (50% HP = 100% physical attacks). Flurry of blows or facehump if PC is stunned. 50% chance of using harden when below 75% HP.
 function zilpackAI():void {
 	//Physical attacks
-	//trace("ZIL AI SHIT: " + ((foes[0].HPMax() - foes[0].HP())/foes[0].HPMax()) * 200);
-	//trace("ZIL HPMAX: " + foes[0].HPMax() + " ZIL HP: " + foes[0].HP());
+	//conLog("ZIL AI SHIT: " + ((foes[0].HPMax() - foes[0].HP())/foes[0].HPMax()) * 200);
+	//conLog("ZIL HPMAX: " + foes[0].HPMax() + " ZIL HP: " + foes[0].HP());
 	if(((foes[0].HPMax() - foes[0].HP())/foes[0].HPMax()) * 200 > rand(100))
 	{
 		if(pc.statusEffectv1("Round") % 4 == 0) pluralZilHarden();
@@ -1824,7 +1824,7 @@ function pennySexMenu(outputT:Boolean = true):void {
 		//if(penny.hasCock()) this.addButton(0,"Onahole Her",jackinPennyOffWithAnOnahole);
 		//else this.addDisabledButton(0,"Onahole Her");
 		//Needs dick or strap-on
-		trace("COCK SIZE: " + pc.cockVolume(0) + " PENNY CAPACITY: " + penny.vaginalCapacity());
+		conLog("COCK SIZE: " + pc.cockVolume(0) + " PENNY CAPACITY: " + penny.vaginalCapacity());
 		if (pc.cockThatFits(penny.vaginalCapacity()) >= 0) this.addButton(1,"OverDeskFuck",pennyOverTheDeskRoughFuck);
 		else this.addDisabledButton(1,"OverDeskFuck");
 		if(penny.hasCock()) this.addButton(2,"Frottage",pennyFrottage);

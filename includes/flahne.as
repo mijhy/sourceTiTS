@@ -35,10 +35,10 @@ function flahneDickOut():Boolean {
 //Meeting Her:
 function meetingFlahne(outputT:Boolean = true):void {
 	this.userInterface.showBust("FLAHNE");
-	trace("FLAHNE OVI STATUS: " + flags["FLAHNE_LIKE_OVIPOSITOR"]);
-	if(flags["FLAHNE_LIKE_OVIPOSITOR"] < 1) trace("NO DICK OUT");
-	else if(flags["FLAHNE_LIKE_OVIPOSITOR"] > 0) trace("DICK OUT");
-	else trace("NEITHER DICK OPTION");
+	conLog("FLAHNE OVI STATUS: " + flags["FLAHNE_LIKE_OVIPOSITOR"]);
+	if(flags["FLAHNE_LIKE_OVIPOSITOR"] < 1) conLog("NO DICK OUT");
+	else if(flags["FLAHNE_LIKE_OVIPOSITOR"] > 0) conLog("DICK OUT");
+	else conLog("NEITHER DICK OPTION");
 	if (outputT) {
 		if(flags["MET_FLAHNE"] == undefined) {
 			flags["MET_FLAHNE"] = 1;

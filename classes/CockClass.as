@@ -2,6 +2,8 @@
 {
 	import classes.DataManager.Serialization.UnversionedSaveable;
 	import classes.GLOBAL;
+	import classes.kGAMECLASS;
+	
 	public class CockClass extends UnversionedSaveable
 	{
 		//constructor
@@ -74,7 +76,7 @@
 		}
 		public function addFlag(arg):void {
 			if(!hasFlag(arg)) cockFlags[cockFlags.length] = arg;
-			else trace("Attempted to add flag " + arg + " to cock of type " + cType + ".");
+			else kGAMECLASS.conLog("Attempted to add flag " + arg + " to cock of type " + cType + ".");
 		}
 		public function clearFlags():void {
 			cockFlags = new Array();
@@ -84,7 +86,7 @@
 			var amountGrown:Number = 0;
 			var temp:Number = 0;
 			if(increase > 0) {
-				trace("growcock increasing..");
+				kGAMECLASS.conLog("growcock increasing..");
 				while(increase > 0) {
 					temp = 1;
 					//Cut length growth for huge dicked
@@ -105,7 +107,7 @@
 			}
 			//Decrease
 			if(increase < 0) {
-				trace("growcock decreasing..");
+				kGAMECLASS.conLog("growcock decreasing..");
 				while(increase < 0) {
 					temp = -1;
 					//Cut cLength growth for huge dicked

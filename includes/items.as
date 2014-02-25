@@ -76,21 +76,21 @@ function buyItem():void {
 	var temp:Number = 0;
 	this.clearMenu();
 	for(var x:int = 0; x < shopkeep.inventory.length; x++) {
-		trace("GOING THROUGH SHOPKEEP INVENTORY.");
+		conLog("GOING THROUGH SHOPKEEP INVENTORY.");
 		//If slot has something in it.
 		if(shopkeep.inventory[x].quantity > 0) {
 			output("\n");
 			temp = getBuyPrice(shopkeep,shopkeep.inventory[x].basePrice);
 			if(temp > pc.credits) output("<b>(Too Expensive)</b> ");
 			output(upperCase(shopkeep.inventory[x].description) + " - " + temp + " credits.");
-			trace("DISPLAYING SHIT");
+			conLog("DISPLAYING SHIT");
 			if(temp <= pc.credits) {
-				trace("SHOWAN BUTANS: " + x);
+				conLog("SHOWAN BUTANS: " + x);
 				if (x <= 13) addItemButton(x, shopkeep.inventory[x], buyItemGo, shopkeep.inventory[x]);
 				if (x > 13) addItemButton(x + 1, shopkeep.inventory[x], buyItemGo, shopkeep.inventory[x]);
 			}
 			else {
-				trace("SHOWAN HIDE BUTTONS");
+				conLog("SHOWAN HIDE BUTTONS");
 				if(x <= 13) this.addDisabledButton(x,shopkeep.inventory[x].shortName + " x" + shopkeep.inventory[x].quantity);
 				if(x > 13) this.addDisabledButton(x+1,shopkeep.inventory[x].shortName + " x" + shopkeep.inventory[x].quantity);
 			}
@@ -122,7 +122,7 @@ function sellItem():void {
 	for(var x:int = 0; x < pc.inventory.length; x++) {
 		//If slot has something in it.
 		if(pc.inventory[x].quantity > 0) {
-			trace("PC inventory being checked for possible sale.");
+			conLog("PC inventory being checked for possible sale.");
 			//Does the shopkeep buy this type?
 			if(shopkeep.buysType(pc.inventory[x].type)) {
 				output("\n" + upperCase(pc.inventory[x].description) + " - " + getSellPrice(shopkeep,pc.inventory[x].basePrice) + " credits.");
@@ -345,7 +345,7 @@ function equipItem(arg:ItemSlotClass):void {
 }
 
 function itemCollect(newLootList:Array, clearScreen:Boolean = false):void {
-	trace("itemCollect", newLootList);
+	conLog("itemCollect" + newLootList);
 	if(clearScreen) clearOutput();
 	var target:PlayerCharacter = pc;
 	if(newLootList.length == 0) {

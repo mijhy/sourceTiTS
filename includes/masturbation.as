@@ -156,15 +156,15 @@ function vaginalFap():void {
 		if(pc.armor.shortName != "") addToList("wriggle out of your [pc.armor]");
 		if(pc.lowerUndergarment.shortName != "") {
 			addToList("push your [pc.lowerUndergarment] down");
-			trace("LOWER ON LIST");
+			conLog("LOWER ON LIST");
 		}
 		if(pc.upperUndergarment.shortName != "") {
 			addToList("pull your [pc.upperUndergarment] off over your head");
-			trace("UPPER ON LIST");
+			conLog("UPPER ON LIST");
 		}
 		output(formatList());
-		trace("UP SHORT: " + pc.upperUndergarment.shortName);
-		trace("LOW SHORT: " + pc.lowerUndergarment.shortName);
+		conLog("UP SHORT: " + pc.upperUndergarment.shortName);
+		conLog("LOW SHORT: " + pc.lowerUndergarment.shortName);
 		output(".");
 	}
 	output(" Exposed to the air, your [pc.vaginas] ");

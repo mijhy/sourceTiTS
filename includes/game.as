@@ -23,8 +23,8 @@ public function mainGameMenu():void {
 		return;
 	}
 	//Queued events can fire off too!
-	//trace("EventQueue = ", eventQueue);
-	//trace("this.eventQueue = ", this.eventQueue);
+	//conLog("EventQueue = ", eventQueue);
+	//conLog("this.eventQueue = ", this.eventQueue);
 	if(eventQueue.length > 0) {
 		//Do the most recent:
 		this.eventQueue[this.eventQueue.length-1]();
@@ -217,7 +217,7 @@ function move(arg:String, goToMainMenu:Boolean = true):void {
 	var map:* = mapper.generateMap(currentLocation);
 	this.userInterface.setMapData(map);
 	
-	//trace("Printing map for " + currentLocation);
+	//conLog("Printing map for " + currentLocation);
 	//mapper.printMap(map);
 	//process time here, then back to mainGameMenu!
 	mainGameMenu();
@@ -254,7 +254,7 @@ function statusTick():void {
 				if(this.chars["PC"].statusEffects[x].storageName == "X-Zil-rate")
 				{
 					this.chars["PC"].physiqueMod -= this.chars["PC"].statusEffects[x].value2;
-					trace("X-Zil-rate Expired: " + this.chars["PC"].statusEffects[x].value2);
+					conLog("X-Zil-rate Expired: " + this.chars["PC"].statusEffects[x].value2);
 				}
 				if(this.chars["PC"].statusEffects[x].storageName == "Zil Sting")
 				{
@@ -277,7 +277,7 @@ function statusTick():void {
 	//Cut the statuses that expired and need cut.
 	while(shitToCut.length > 0)
 	{
-		trace("REMOVING " + chars["PC"].statusEffects.storageName);
+		conLog("REMOVING " + chars["PC"].statusEffects.storageName);
 		this.chars["PC"].statusEffects.splice(shitToCut[shitToCut.length-1],1);
 		shitToCut.splice(shitToCut.length-1,1);
 	}

@@ -38,6 +38,7 @@
 	import classes.UIComponents.MiniMap.MiniMap;
 	import classes.GameData.TooltipManager;
 	import classes.UIComponents.UIStyleSettings;
+	import classes.kGAMECLASS;
 
 	import classes.StatBarSmall;
 	import classes.StatBarBig;
@@ -762,13 +763,13 @@
 			//Set the size of the bar!
 			//Number of lines on screen
 			var pageSize:int = target.bottomScrollV - target.scrollV + 1;
-				//trace("Bottom Scroll V: " + target.bottomScrollV);
-				//trace("Page Size: " + pageSize);
+				//conLog("Bottom Scroll V: " + target.bottomScrollV);
+				//conLog("Page Size: " + pageSize);
 			//Fix pagesize for super tiny
 			if(pageSize <= 0) pageSize = 1;
 			//Number of pages
 			var pages:Number = target.numLines / pageSize;
-				//trace("Pages: " + pages);
+				//conLog("Pages: " + pages);
 			scrollBar.height = pageSize / target.numLines * (target.height - upScrollButton.height - downScrollButton.height);
 			if(scrollBar.height < scrollBG.height) scrollBar.buttonMode = true;
 			else scrollBar.buttonMode = false;
@@ -776,19 +777,19 @@
 			//Set the position of the bar
 			//the size of the scroll field
 			var field:Number = target.height - upScrollButton.height - scrollBar.height - downScrollButton.height;
-				//trace("Field: " + field);
+				//conLog("Field: " + field);
 			var progress:Number = 0;
 			var min = target.scrollV;
 			var max = target.maxScrollV;
-				//trace("Min: " + min);
+				//conLog("Min: " + min);
 			//Don't divide by zero - cheese it to work.
 			if(max == 1) {
 				max = 2;
 				min = 2;
 			}
 			progress = (min-1) / (max-1);
-				//trace("Progress: " + progress);
-				//trace("Progress x Field: " + progress * field);
+				//conLog("Progress: " + progress);
+				//conLog("Progress x Field: " + progress * field);
 			scrollBar.y = target.y + progress * field + upScrollButton.height;
 			titsClassPtr.scrollChecker();
 		}
@@ -841,7 +842,7 @@
 
 		public function menuButtonsOn():void 
 		{
-			//trace("this.stagePtr = ", this.stagePtr);
+			//conLog("this.stagePtr = ", this.stagePtr);
 			if (!titsClassPtr.pc.hasStatusEffect("In Creation") && titsClassPtr.pc.short != "uncreated") 
 			{
 				appearanceOn();
@@ -1054,13 +1055,13 @@
 				if (i > 0) argS += ", ";
 				argS += args[i];
 			}
-			trace("showBust called with args: [" + argS + "]");
+			kGAMECLASS.conLog("showBust called with args: [" + argS + "]");
 			_leftSideBar.locationBlock.showBust(args);			
 		}
 		
 		public function hideBust():void
 		{
-			trace("hideBust called");
+			kGAMECLASS.conLog("hideBust called");
 			_leftSideBar.locationBlock.hideBust();
 		}
 

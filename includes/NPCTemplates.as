@@ -1,6 +1,6 @@
 ﻿public function initializeNPCs(justUpdate:Boolean = false):void 
 {
-	trace("initializeNPCs Called, just doing cleanup?", justUpdate)
+	conLog("initializeNPCs Called, just doing cleanup?" + justUpdate)
 	if (!justUpdate || (justUpdate && chars["CELISE"] == undefined))
 	{
 		chars["CELISE"] = new classes.Characters.Celise();
@@ -119,7 +119,7 @@
 		}
 		else
 		{
-			trace("Creature '" + prop + "' Game Version " + chars[prop].version);
+			conLog("Creature '" + prop + "' Game Version " + chars[prop].version);
 		}
 	}
 	

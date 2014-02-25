@@ -1,5 +1,7 @@
 package classes 
 {
+	import classes.kGAMECLASS;
+	
 	/**
 	 * ...
 	 * @author Gedan
@@ -58,7 +60,7 @@ package classes
 			if (_currKeyIndex == _keyCodes.length)
 			{
 				_currKeyIndex = 0;
-				trace("CHEAT ACTIVATED: " + _shortName + " CHEATER!");
+				kGAMECLASS.conLog("CHEAT ACTIVATED: " + _shortName + " CHEATER!");
 				_funcToCall();
 			}
 		}

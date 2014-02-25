@@ -19,14 +19,14 @@
 		var creator:Object;
 		
 		public function ScriptParserNOPE(creatorObj:Object) {
-			//trace("Script Test");
+			//conLog("Script Test");
 			creator = creatorObj;
-			//trace(ParseScript(testscript1));
+			//conLog(ParseScript(testscript1));
 			//We should have gotten up to the choices.
 			//Lets pull the choices and see what we have.
 			//var choices = GetChoiceButtons();
-			//trace(choices[2][0]);
-			//trace(ParseScriptSection(testScript, choices[1][0]));
+			//conLog(choices[2][0]);
+			//conLog(ParseScriptSection(testScript, choices[1][0]));
 		}
 		
 		public function GetVariable(variableName:String):Object {
@@ -274,7 +274,7 @@
 		private function ReplaceDescriptor(matchedSubstring:String, descriptor:String, index:int, str:String):String {
 			var paramArray:Array = descriptor.split(" ");
 			var descriptorArray:Array = paramArray[0].split(".");
-			//trace(descriptorArray[0]);
+			//conLog(descriptorArray[0]);
 			//Okay we got stuff!
 			var description:String;
 			try{

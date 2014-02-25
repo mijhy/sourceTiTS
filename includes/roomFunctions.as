@@ -12,9 +12,9 @@ import classes.Items.Apparel.TSTArmor;
 
 function hangarBonus():Boolean 
 {
-	trace("this", this);
-	// trace("this.titsClassPtr.move,", this.titsClassPtr.move);
-	// trace("this.titsClassPtr.userInterface", this.titsClassPtr.userInterface);
+	conLog("this" + this);
+	// conLog("this.titsClassPtr.move,", this.titsClassPtr.move);
+	// conLog("this.titsClassPtr.userInterface", this.titsClassPtr.userInterface);
 	if(currentLocation == "LIFT: MERCHANT DECK") {
 		addButton(5,"ToHangar",liftMove, "TAVROS LIFT");
 	}
